@@ -1,12 +1,11 @@
 package com.vhaa.practica3
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.vhaa.practica3.databinding.ItemHistoricalBinding
 import helpers.Note
 
 /**
@@ -47,19 +46,21 @@ class HistoricAdapter(historical: MutableList<Note>, context: Context) :
      * información sobre los widgets del ítem.
      */
     class HistoricViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        private val _student = view.findViewById(R.id.lbl_historic_student) as TextView
-        private val _mode = view.findViewById(R.id.lbl_historic_mode) as TextView
+        private val binding = ItemHistoricalBinding.bind(view)
 
-        private val _month = view.findViewById(R.id.lbl_historic_month) as TextView
-        private val _day = view.findViewById(R.id.lbl_historic_day) as TextView
-        private val _year = view.findViewById(R.id.lbl_historic_year) as TextView
+        private val _student = binding.lblHistoricStudent
+        private val _mode = binding.lblHistoricMode
 
-        private val _note = view.findViewById(R.id.lbl_historic_note) as TextView
-        private val _description = view.findViewById(R.id.lbl_historic_description) as TextView
+        private val _month = binding.lblHistoricMonth
+        private val _day = binding.lblHistoricDay
+        private val _year = binding.lblHistoricYear
+
+        private val _note = binding.lblHistoricNote
+        private val _description = binding.lblHistoricDescription
 
         fun bind(note: Note, context: Context) {
             _student.text = note.student
-            _mode.text = "(" + note.description + ")"
+            _mode.text = "(" + note.mode + ")"
 
             _day.text = note.date.day.toString()
             _month.text = note.date.getMonthDescriptionEs()
